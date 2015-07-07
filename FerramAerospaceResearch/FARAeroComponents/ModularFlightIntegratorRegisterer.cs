@@ -66,12 +66,13 @@ namespace FerramAerospaceResearch.FARAeroComponents
             for (int i = 0; i < fi.PartThermalDataCount; i++)
             {
                 Part part = fi.partThermalDataList[i].part;
-                PartModule module = part.Modules["FARAeroPartModule"];
+                FARAeroPartModule aeroModule = null;
 
-                if((object)module == null)
+                if (part.Modules.Contains("FARAeroPartModule"))
+                    aeroModule = part.Modules["FARAeroPartModule"] as FARAeroPartModule;
+
+                if((object)aeroModule == null)
                     continue;
-
-                FARAeroPartModule aeroModule = (FARAeroPartModule)module;
 
                 part.radiativeArea = CalculateAreaRadiative(fi, part, aeroModule);
                 part.exposedArea = part.machNumber > 0 ? CalculateAreaExposed(fi, part, aeroModule) : 0;
