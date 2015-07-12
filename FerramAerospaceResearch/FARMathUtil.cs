@@ -61,16 +61,6 @@ namespace FerramAerospaceResearch
             return y;
         }
 
-        public static string FormatTime(double time)
-        {
-            int iTime = (int)time % 3600;
-            int seconds = iTime % 60;
-            int minutes = (iTime / 60) % 60;
-            int hours = (iTime / 3600);
-            return hours.ToString("D2")
-            + ":" + minutes.ToString("D2") + ":" + seconds.ToString("D2");
-        }
-        
         public static T Clamp<T>(this T val, T min, T max) where T : IComparable<T>
         {
             if (val.CompareTo(min) < 0) return min;
